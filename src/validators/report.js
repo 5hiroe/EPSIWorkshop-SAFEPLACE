@@ -5,7 +5,8 @@ export default class ReportValidator extends Validator {
     create = Joi.object({
         fields: Joi.object({
             content: Joi.string().required(),
-            comment: Joi.string()
+            comment: Joi.string(),
+            uri: Joi.string().required()
         }).required()
     })
 
