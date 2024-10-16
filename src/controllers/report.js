@@ -29,6 +29,15 @@ export async function forward(req, res) {
     ReportValidatorInstance.validate(body, ReportValidatorInstance.forward)
     const { id } = params
     const adminId = req.jwt.jwt.data.id
-    await ReportServiceInstance.forward({ id, adminId })
-    return res.status(200).json({ message: 'le signalement a bien été mis à jour!' })
+    const report = await ReportServiceInstance.forward({ id, adminId })
+    return res.status(200).json({ message: 'le signalement a bien été mis à jour!', report })
+}
+
+export async function approve(req, res) {
+    const { params } = req
+    ReportValidatorInstance.validate(body, ReportValidatorInstance.approve)
+    const { id } = params
+    const adminId = req.jwt.jwt.data.id
+    const report = await ReportServiceInstance.approve({ id, adminId })
+    return res.status(200).json({ message: 'le signalement a bien été mis à jour!', report })
 }

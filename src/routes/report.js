@@ -8,5 +8,6 @@ router.post('/', reportController.create)
 router.get('/', reportController.getAll)
 router.get('/:id', reportController.get)
 router.put('/forward/:id', jwt.verify, reportController.forward)
+router.put('/approve/:id', jwt.verify, reportController.approve)
 
 export default router

@@ -38,8 +38,20 @@ export default class ReportService {
         }
         report.status = 'tbf'
         report.forwardedBy = adminId
-        report.tbfDate = report.createdAt
+        report.tbfDate = Date.now()
         await report.save()
+        return report
     }
 
+    async approve ({ id, adminId }) {
+        const report = await ReportModel.findById(id)
+        if (!report) {
+            throw new NotFound('Signalement inexistant.')
+        }
+        report.status = 'approved'
+        report.approvedBy = adminId
+        report.approvedDate = Date.now()
+        await report.save()
+        return report
+    }
 }
