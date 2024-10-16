@@ -23,3 +23,12 @@ export async function get(req, res) {
     const report = await ReportServiceInstance.getOne({ id })
     return res.status(200).json({ report })
 }
+
+export async function forward(req, res) {
+    const { params } = req
+    ReportValidatorInstance.validate(body, ReportValidatorInstance.forward)
+    const { id } = params
+    const adminId = req.jwt.jwt.data.id
+    await ReportServiceInstance.forward({ id, adminId })
+    return res.status(200).json({ message: 'le signalement a bien été mis à jour!' })
+}

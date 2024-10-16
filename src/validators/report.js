@@ -13,4 +13,8 @@ export default class ReportValidator extends Validator {
     getOne = Joi.object({
         id: Joi.string().required()
     })
+
+    forward = Joi.object({
+        id: Joi.string().required()
+    })
 }
