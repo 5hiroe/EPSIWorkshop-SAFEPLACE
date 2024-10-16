@@ -26,8 +26,20 @@ export default class ReportService {
     async getOne ({ id }) {
         const report = await ReportModel.findById(id)
         if (!report) {
-            throw new NotFound('Report not found')
+            throw new NotFound('Signalement inexistant.')
         }
         return report
     }
+
+    async forward ({ id, adminId }) {
+        const report = await ReportModel.findById(id)
+        if (!report) {
+            throw new NotFound('Signalement inexistant.')
+        }
+        report.status = 'tbf'
+        report.forwardedBy = adminId
+        report.tbfDate = report.createdAt
+        await report.save()
+    }
+
 }

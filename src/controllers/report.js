@@ -1,7 +1,7 @@
 import ReportService from '../services/report.js'
 import ReportValidator from '../validators/report.js'
-ReportServiceInstance = new ReportService()
-ReportValidatorInstance = new ReportValidator()
+const ReportServiceInstance = new ReportService()
+const ReportValidatorInstance = new ReportValidator()
 
 export async function create(req, res) {
   const { body } = req

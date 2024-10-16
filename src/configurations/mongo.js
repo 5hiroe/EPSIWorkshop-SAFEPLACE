@@ -5,10 +5,7 @@ import mongoose from 'mongoose'
  */
 export async function configure (app) {
   return mongoose
-    .connect(process.env.DB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+    .connect(process.env.DB_URL)
     .then(() => {
       console.log('Mongo Initialized')
     })
