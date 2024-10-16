@@ -13,7 +13,7 @@ export default class ReportService {
   async create ({ fields }) {
     // TODO : Add Premium User Login feature
     fields.status = 'pending'
-    const reportModel = await new ReportModel({ fields })
+    const reportModel = await new ReportModel({ ...fields })
     await reportModel.save()
     return reportModel
   }
